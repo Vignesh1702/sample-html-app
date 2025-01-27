@@ -1,5 +1,8 @@
-FROM nginx:alpine
-RUN rm -rf /usr/share/nginx/html/*
-COPY index.html /usr/share/nginx/html
-RUN chmod 644 /usr/share/nginx/html/*
+FROM ubuntu 
+RUN apt update 
+RUN apt install  apache2  -y
+RUN rm -f /var/www/html/* 
+COPY   index.html /var/www/html/
 EXPOSE 80
+#CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+CMD apachectl -D FOREGROUND
